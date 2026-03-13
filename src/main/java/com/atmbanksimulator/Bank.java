@@ -15,7 +15,7 @@ public class Bank {
     private int maxAccounts = 10;                       // Maximum number of accounts the bank can hold
     private int numAccounts = 0;                        // Current number of accounts in the bank
     private BankAccount[] accounts = new BankAccount[maxAccounts];  // Array to hold BankAccount objects
-    private BankAccount loggedInAccount = null;         // Currently logged-in account ('null' if no one is logged in)
+    public BankAccount loggedInAccount = null;         // Currently logged-in account ('null' if no one is logged in)
 
     // a method to create new BankAccount - this is known as a 'factory method' and is a more
     // flexible way to do it than just using the 'new' keyword directly.
@@ -33,6 +33,14 @@ public class Bank {
         } else {
             return false;
         }
+    }
+
+    public boolean addStudentBankAccount(String accNumber, String accPasswd, int balance, int dailyLimit){
+        return addBankAccount(makeStudentBankAccount(accNumber,accPasswd,balance,dailyLimit));
+    }
+
+    public StudentBankAccount makeStudentBankAccount(String accNumber, String accPasswd, int balance, int dailyLimit){
+        return new StudentBankAccount(accNumber,accPasswd,balance,dailyLimit);
     }
 
     // Variant of addBankAccount: creates a BankAccount and adds it in one step.
@@ -112,4 +120,9 @@ public class Bank {
             return -1; // use -1 as an indicator of an error
         }
     }
+
+    public void showAccounts(){
+        System.out.print(accounts[2].getAccNumber());
+    }
+
 }

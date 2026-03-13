@@ -14,10 +14,14 @@ public class Main extends Application {
     public static void main( String args[] ) {launch(args);}
 
     public void start(Stage window) {
+
         // Create a Bank object add two bank accounts for test
         Bank bank = new Bank();
         bank.addBankAccount("10001", "11111", 100);
         bank.addBankAccount("10002", "22222", 50);
+        bank.addStudentBankAccount("20002","11111",300,200);
+
+        bank.showAccounts();
 
         //UIModel-View-Controller structure setup
         // Create the UIModel, View and Controller objects and link them together

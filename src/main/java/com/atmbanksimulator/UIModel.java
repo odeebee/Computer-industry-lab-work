@@ -134,6 +134,10 @@ public class UIModel {
                     setState(STATE_LOGGED_IN);
                     message = "Logged In";
                     result = "Now enter the amount\nThen press transaction\n(Dep = Deposit, W/D = Withdraw)";
+                    if(bank.loggedInAccount instanceof StudentBankAccount){
+                        StudentBankAccount s = (StudentBankAccount) bank.loggedInAccount;
+                        result = "Now enter the amount\nThen press transaction\n(Dep = Deposit, W/D = Withdraw),\nYou are using a student bank account!\nYour daily withdraw limit is: " + s.getWithdrawLimit();
+                    }
                 } else {
                     // Login failed: reset ATM and display error
                     message = "Login failed: Unknown Account/Password";
@@ -199,6 +203,13 @@ public class UIModel {
                 else{
                     message = "Withdraw Failed: Insufficient Funds";
                     result = "Now enter the amount\nThen press transaction\n(Dep = Deposit, W/D = Withdraw)";
+                    if(bank.loggedInAccount instanceof StudentBankAccount){
+                        StudentBankAccount s = (StudentBankAccount) bank.loggedInAccount;
+                        if (s.getWithdrawBool()){
+                            message = "Withdraw Failed: Over your withdraw limit!";
+                            s.triedToWithdrawOverLimit = false;
+                        }
+                    }
                 }
             }
             else{

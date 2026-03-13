@@ -10,6 +10,9 @@ public class BankAccount {
     private String accPasswd ="";
     private int balance = 0;
 
+    //No constructor needed.
+    private String accountType = "Standard";
+
     public BankAccount() {}
     public BankAccount(String a, String p, int b) {
         accNumber = a;
@@ -53,4 +56,7 @@ public class BankAccount {
     public String getaccPasswd() {
         return accPasswd;
     }
+
+    public String getAccType(){return accountType;}
+
 }
