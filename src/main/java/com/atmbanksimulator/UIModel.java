@@ -137,6 +137,12 @@ public class UIModel {
                     if(bank.loggedInAccount instanceof StudentBankAccount){
                         StudentBankAccount s = (StudentBankAccount) bank.loggedInAccount;
                         result = "Now enter the amount\nThen press transaction\n(Dep = Deposit, W/D = Withdraw),\nYou are using a student bank account!\nYour daily withdraw limit is: " + s.getWithdrawLimit();
+                    } else if (bank.loggedInAccount instanceof  PrimeBankAccount){
+                        PrimeBankAccount p = (PrimeBankAccount) bank.loggedInAccount;
+                        result = "Now enter the amount\nThen press transaction\n(Dep = Deposit, W/D = Withdraw),\nYou are using a prime bank account!\nYour daily withdraw limit is: " + p.getWithdrawLimit() + "\nYou current have £" + p.getRemainingOverdraft() + "\nof your overdraft remaining!";
+                    } else if (bank.loggedInAccount instanceof  SavingsBankAccount) {
+                        SavingsBankAccount s = (SavingsBankAccount) bank.loggedInAccount;
+                        result = "Now enter the amount\nThen press transaction\n(Dep = Deposit, W/D = Withdraw),\nYou are using a savings bank account!\nYour current intrest rate is!: " + s.getIntrestRate() + "%";
                     }
                 } else {
                     // Login failed: reset ATM and display error

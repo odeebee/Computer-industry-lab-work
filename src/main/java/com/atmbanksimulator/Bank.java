@@ -35,6 +35,22 @@ public class Bank {
         }
     }
 
+    public boolean addSavingsBankAccount(String accNumber, String accPasswd, int balance, int intrestRate){
+        return addBankAccount(makeSavingsBankAccount(accNumber,accPasswd,balance,intrestRate));
+    }
+
+    public SavingsBankAccount makeSavingsBankAccount(String accNumber, String accPasswd, int balance, int intrestRate){
+        return new SavingsBankAccount(accNumber,accPasswd,balance,intrestRate);
+    }
+
+    public boolean addPrimeBankAccount(String accNumber, String accPasswd, int balance, int dailyLimit, int overdraftLimit){
+        return addBankAccount(makePrimeBankAccount(accNumber,accPasswd,balance,dailyLimit,overdraftLimit));
+    }
+
+    public PrimeBankAccount makePrimeBankAccount(String accNumber, String accPasswd, int balance, int dailyLimit, int overdraftLimit){
+        return new PrimeBankAccount(accNumber, accPasswd,balance,dailyLimit,overdraftLimit);
+    }
+
     public boolean addStudentBankAccount(String accNumber, String accPasswd, int balance, int dailyLimit){
         return addBankAccount(makeStudentBankAccount(accNumber,accPasswd,balance,dailyLimit));
     }

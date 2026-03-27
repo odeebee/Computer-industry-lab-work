@@ -20,6 +20,8 @@ public class Main extends Application {
         bank.addBankAccount("10001", "11111", 100);
         bank.addBankAccount("10002", "22222", 50);
         bank.addStudentBankAccount("20002","11111",300,200);
+        bank.addPrimeBankAccount("90009","12345",1000,20000,500);
+        bank.addSavingsBankAccount("12345","12345",500,4);
 
         bank.showAccounts();
 
