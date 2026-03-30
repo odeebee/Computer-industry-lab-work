@@ -44,6 +44,11 @@ public class PrimeBankAccount extends BankAccount {
     public int getRemainingOverdraft(){return overdraftAvailable;}
 
     @Override
+    public void switchPasswd(String passwd){
+        accPasswd = passwd;
+    }
+
+    @Override
     public boolean withdraw( int amount ) {
         if (amount < 0 || balance + overdraftAvailable < amount) {
             return false;

@@ -20,6 +20,10 @@ public class BankAccount {
         balance = b;
     }
 
+    public void switchPasswd(String passwd){
+        accPasswd = passwd;
+    }
+
     // Withdraw money from this account.
     // Returns true if successful, or false if the amount is negative or exceeds the current balance.
     public boolean withdraw( int amount ) {

@@ -21,6 +21,11 @@ public class StudentBankAccount extends BankAccount{
     public boolean triedToWithdrawOverLimit = false;
 
     @Override
+    public void switchPasswd(String passwd){
+        accPasswd = passwd;
+    }
+
+    @Override
     public String getAccNumber(){return accNumber;};
 
     @Override

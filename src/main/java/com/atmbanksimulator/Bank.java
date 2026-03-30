@@ -75,6 +75,8 @@ public class Bank {
         // Search the accounts array to find a BankAccount with a matching accountNumber and password.
         // - If found, set 'loggedInAccount' to that account and return true.
         // - If not found, reset 'loggedInAccount' to null and return false.
+
+        //Need to instead read this from a txt or a json file instead (Maybe dump the accounts array on startup)
         for (BankAccount b: accounts) {
             if (b.getAccNumber().equals(accountNumber) && b.getaccPasswd().equals(password)) {
                 // found the right account
@@ -135,6 +137,10 @@ public class Bank {
         } else {
             return -1; // use -1 as an indicator of an error
         }
+    }
+
+    public void changePasswd(String oldPasswd,String newPasswd,String user){
+        loggedInAccount.switchPasswd(newPasswd);
     }
 
     public void showAccounts(){

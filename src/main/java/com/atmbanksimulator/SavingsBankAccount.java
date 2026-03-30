@@ -37,6 +37,11 @@ public class SavingsBankAccount extends BankAccount{
         }
     }
 
+    @Override
+    public void switchPasswd(String passwd){
+        accPasswd = passwd;
+    }
+
     // Getter for the account balance
     // Returns the current balance of this account
     public int getBalance() {

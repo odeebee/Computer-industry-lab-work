@@ -20,6 +20,8 @@ public class UIModel {
     private final String STATE_ACCOUNT_NO = "account_no";
     private final String STATE_PASSWORD = "password";
     private final String STATE_LOGGED_IN = "logged_in";
+    private final String STATE_CHANGE_PASSWD = "change_passwd";
+    private final String STATE_CHANGE_NEW_PASSWD = "change_new_passwd";
 
     // Variables representing the state and data of the ATM UIModel
     private String state = STATE_ACCOUNT_NO;    // Current state of the ATM
@@ -104,6 +106,30 @@ public class UIModel {
         // The action depends on the current ATM state
         switch ( state )
         {
+            case STATE_CHANGE_NEW_PASSWD:
+                if(numberPadInput.equals("")){
+                    message = "Invalid input";
+                    reset(message);
+                }else{
+                    message = "Password changed";
+                    result = "Your password has now\nbeen changed.";
+                    bank.changePasswd(bank.loggedInAccount.getaccPasswd(),numberPadInput,bank.loggedInAccount.getAccNumber());
+                    numberPadInput = "";
+                }
+                break;
+            case STATE_CHANGE_PASSWD:
+                if(numberPadInput.equals("")) {
+                    message = "Invalid Password";
+                    reset(message);
+                }else{
+                    message = "Password accepted";
+                    if(numberPadInput.equals(bank.loggedInAccount.getaccPasswd())){
+                        result = "Password matching,\nPlease enter your new password.";
+                        numberPadInput = "";
+                        setState(STATE_CHANGE_NEW_PASSWD);
+                    }
+                }
+                break;
             case STATE_ACCOUNT_NO:
                 // Waiting for a complete account number
                 // If nothing was entered, reset with "Invalid Account Number"
@@ -271,6 +297,17 @@ public class UIModel {
     // - Reset the ATM and display an "Invalid Command" message
     public void processUnknownKey(String action) {
         reset("Invalid Command");
+        update();
+    }
+
+    public void processPsswd(){
+        if(bank.loggedIn()){
+            message = "Change your password";
+            result = "Please enter your current password \nto change it";
+            setState(STATE_CHANGE_PASSWD);
+        }else {
+            reset("Login before changing password");
+        }
         update();
     }
 
