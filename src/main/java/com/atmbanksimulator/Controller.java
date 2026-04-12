@@ -38,6 +38,12 @@ public class Controller {
             case "Pas":
                 UIModel.processPsswd();
                 break;
+            case "Login":
+                UIModel.processLogin();
+                break;
+            case "Create an account":
+                UIModel.createAccount();
+                break;
             default:
                 UIModel.processUnknownKey(action);
                 break;

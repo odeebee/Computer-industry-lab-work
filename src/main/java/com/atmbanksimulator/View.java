@@ -26,6 +26,9 @@ class View {
     private GridPane grid;      // Main layout container (grid-based)
     private TilePane buttonPane;// Container for ATM keypad buttons (tiled layout)
 
+    private Button login;
+    private Button create;
+
     // start() is called from Main to set up the UI.
     // Important: create controls here (not in the constructor or as field initializers),
     // so that everything is initialized in the correct order.
@@ -35,7 +38,9 @@ class View {
         // 1. A message label
         // 2. A text field showing numbers
         // 3. A text area showing transaction results, summaries, and user instructions
-        // 4. A tiled panel of buttons
+        // 4. A tiled panel of button
+
+
         grid = new GridPane(); // top layout
         grid.setId("Layout");  // assign an id to be used in css file
         buttonPane = new TilePane(); //
@@ -44,6 +49,14 @@ class View {
         // controls
         laMsg = new Label("Welcome to Bank-ATM");  // Message bar at the top
         grid.add(laMsg, 0, 0);         // Add to GUI at the top
+
+        login = new Button("Login");
+        login.setOnAction(this :: buttonClicked);
+        grid.add(login,0,5);
+
+        create = new Button("Create an account");
+        create.setOnAction(this :: buttonClicked);
+        grid.add(create,0,3);
 
         tfInput = new TextField();     // text field for numbers
         tfInput.setEditable(false);     // Read only (user can't type in)
@@ -57,11 +70,21 @@ class View {
 
         // Define the button layout as a 2D array of text labels.
         // Empty strings ("") represent blank spaces in the grid.
+        String buttonTextsBlank[][] = {
+                {"",    "",  "",  "",  "",  ""},
+                {"",    "",  "",  "",  "",  ""},
+                {"",    "",  "",  "",  "",  ""},
+                {"",  "",  "",   "",  "",     ""} };
+
         String buttonTexts[][] = {
                 {"7",    "8",  "9",  "",  "Dep",  ""},
                 {"4",    "5",  "6",  "",  "W/D",  ""},
                 {"1",    "2",  "3",  "",  "Bal",  "Fin"},
                 {"CLR",  "0",  "",   "",  "Pas",     "Ent"} };
+
+        String buttonTextsStandard[][] = buttonTexts;
+
+        buttonTexts = buttonTextsStandard;
 
         // Build the button panel, loop through the array,
         // - For non-empty strings, create a Button
@@ -82,7 +105,9 @@ class View {
                 }
             }
         }
+        //call this line when login / create button is pressed
         grid.add(buttonPane,0,3); // add the tiled pane of buttons to the main grid
+        buttonPane.setVisible(false);
 
         // add the complete GUI to the window and display it
         Scene scene = new Scene(grid, W, H);
@@ -113,5 +138,12 @@ class View {
         laMsg.setText(msg);
         tfInput.setText(tfInputMsg);
         taResult.setText(taResultMsg);
+    }
+
+    public void changeButtons(){
+        login.setVisible(false);
+        create.setVisible(false);
+        buttonPane.setVisible(true);
+        //grid.add(buttonPane,0,3);
     }
 }

@@ -12,9 +12,9 @@ public class Bank {
     // Refactor addBankAccount and login methods to leverage ArrayList.
 
     // Instance variables storing bank information
-    private int maxAccounts = 10;                       // Maximum number of accounts the bank can hold
+    static int maxAccounts = 10;                       // Maximum number of accounts the bank can hold
     private int numAccounts = 0;                        // Current number of accounts in the bank
-    private BankAccount[] accounts = new BankAccount[maxAccounts];  // Array to hold BankAccount objects
+    static BankAccount[] accounts = new BankAccount[maxAccounts];  // Array to hold BankAccount objects
     public BankAccount loggedInAccount = null;         // Currently logged-in account ('null' if no one is logged in)
 
     // a method to create new BankAccount - this is known as a 'factory method' and is a more
@@ -147,4 +147,19 @@ public class Bank {
         System.out.print(accounts[2].getAccNumber());
     }
 
+    public static boolean checkDupesAccNum(String accNum){
+        for(BankAccount account : accounts){
+            if(account == null){
+                break;
+            }
+            if(account.getAccNumber().equals(accNum)){
+                return false;
+            }
+            System.out.print(account.getAccNumber());
+            System.out.print(" ");
+            System.out.print(accNum);
+            System.out.println("");
+        }
+        return true;
+    }
 }
