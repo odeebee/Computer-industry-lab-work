@@ -78,6 +78,9 @@ public class Bank {
 
         //Need to instead read this from a txt or a json file instead (Maybe dump the accounts array on startup)
         for (BankAccount b: accounts) {
+            if(b == null){
+                break;
+            }
             if (b.getAccNumber().equals(accountNumber) && b.getaccPasswd().equals(password)) {
                 // found the right account
                 loggedInAccount = b;

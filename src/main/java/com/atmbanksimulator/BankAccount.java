@@ -10,6 +10,9 @@ public class BankAccount {
     private String accPasswd ="";
     private int balance = 0;
 
+    private int loginAttempts = 0;
+    private int maxLoginAttemps = 3;
+
     //No constructor needed.
     private String accountType = "Standard";
 
@@ -62,5 +65,13 @@ public class BankAccount {
     }
 
     public String getAccType(){return accountType;}
+
+    public int getLoginAttempts(){return loginAttempts;}
+    public int getMaxLoginAttemps(){return maxLoginAttemps;}
+    public void addLoginAttempts(){
+        System.out.println("Adding to login attempts");
+        loginAttempts = loginAttempts + 1;
+        System.out.println(loginAttempts);
+    }
 
 }

@@ -288,9 +288,21 @@ public class UIModel {
                     // update the state to expect password, and provide instructions
                     accNumber = numberPadInput;
                     numberPadInput = "";
-                    setState(STATE_PASSWORD);
-                    message = "Account Number Accepted";
-                    result = "Now enter your password\nFollowed by \"Ent\"";
+                    for(BankAccount b : Bank.accounts){
+                        if(b == null){
+                            break;
+                        }
+                        if(b.getAccNumber().equals(accNumber)){
+                            if(b.getLoginAttempts() == 3){
+                                result = "Account has been locked";
+                            }else{
+                                setState(STATE_PASSWORD);
+                                message = "Account Number Accepted";
+                                result = "Now enter your password\nFollowed by \"Ent\"";
+                            }
+                        }
+                    }
+
                 }
                 break;
 
@@ -319,6 +331,20 @@ public class UIModel {
                 } else {
                     // Login failed: reset ATM and display error
                     message = "Login failed: Unknown Account/Password";
+                    System.out.println("Searching for account "+accNumber);
+                    for(BankAccount b : Bank.accounts){
+                        if(b == null){
+                            break;
+                        }
+                        System.out.println(b.getAccNumber());
+                        if(b.getAccNumber().equals(accNumber)){
+                            System.out.println("IM IN THE ACCOUNT "+accNumber);
+                            if(b.getLoginAttempts() != 3){
+                                b.addLoginAttempts();
+                            }
+                            break;
+                        }
+                    }
                     reset(message);
                 }
                 break;
