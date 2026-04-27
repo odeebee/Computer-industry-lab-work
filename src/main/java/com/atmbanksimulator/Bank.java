@@ -147,7 +147,7 @@ public class Bank {
     }
 
     public void showAccounts(){
-        System.out.print(accounts[2].getAccNumber());
+        //System.out.print(accounts[2].getAccNumber());
     }
 
     public static boolean checkDupesAccNum(String accNum){
